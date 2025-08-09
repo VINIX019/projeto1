@@ -10,7 +10,7 @@ def mostrar_cadastros():
             leitor_csv = csv.reader(arquivo_csv)
 
             try:
-                next(leitor_csv)  # Pula o cabeçalho
+                next(leitor_csv)  
             except StopIteration:
                 print('O arquivo existe, mas está vazio.')
                 return
@@ -19,7 +19,7 @@ def mostrar_cadastros():
             for linha in leitor_csv:
                 if linha:
                     try:
-                        # Converte os valores para os tipos corretos
+                        
                         nome, tel, v, m, j, vj, vt = linha
                         v = float(v)
                         vj = float(vj)
@@ -73,7 +73,7 @@ def gerenciar_cadastros():
                         vj = (v / m) + (v * j / 100)
                         vt = vj * m
                         registros.append([nome, tel, v, m, j, vj, vt])
-                    else:  # Ação de exclusão
+                    else:  
                         print(f"Cadastro de {linha[0]} excluído com sucesso.")
                 else:
                     registros.append(linha)
@@ -81,7 +81,7 @@ def gerenciar_cadastros():
         if not encontrado:
             print(f"Cliente '{nome_alvo}' não encontrado.")
 
-        # Sobrescreve o arquivo com os registros atualizados (ou com o registro excluído)
+    
         with open(nome_arquivo, mode='w', newline='', encoding='utf-8') as arquivo_csv:
             writer = csv.writer(arquivo_csv)
             writer.writerows(registros)
